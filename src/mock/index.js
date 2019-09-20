@@ -47,3 +47,22 @@ export const players = [
     "age": 36
   }
 ]
+
+const users = [
+  { 
+    "id": "2asdHa8324fsd-dsa",
+    "name": "Mario",
+    "guesses": [
+      {
+        "game_id": """
+      }
+    ]
+  }
+]
+
+const games = [
+  {
+    "id": "22222222",
+    
+  }
+]

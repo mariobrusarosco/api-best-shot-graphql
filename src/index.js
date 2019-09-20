@@ -20,6 +20,10 @@ const typeDefs = `
     age: Int!
   }
 
+
+  type Mutation {
+    createTeam(name: String!, label: String!): Team!
+  }
 `
 
 const resolvers = {
@@ -28,6 +32,18 @@ const resolvers = {
       const { id } = args
 
       return teams.find(team => team.id === id)
+    }
+  },
+  Mutation: {
+    createTeam(parent, args, context, info) {
+      const newTeam = {
+        id: Math.random()
+          .toString(16)
+          .slice(2),
+        ...args
+      }
+      teams.push(newTeam)
+      return newTeam
     }
   }
 }
