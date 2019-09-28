@@ -1,104 +1,28 @@
+// Vendor
 import { GraphQLServer } from 'graphql-yoga'
 
-import { teams, players, users, guesses, tournaments } from './mock'
+// DB
+// import {MongoClient, ObjectId} from 'mongodb'
+// const MONGO_URL = 'mongodb+srv://mariobrusarosco:m2m1a4o0@soocerguess-nzx4u.mongodb.net/test?retryWrites=true&w=majority'
 
-const typeDefs = `
-  type Query {
-    team(id: ID): Team!
-  }
+import db from './db'
+// const db = MongoClient.connect(MONGO_URL).then(db => db)
+// console.log({ db })
 
-  type Team {
-    id: ID!
-    name: String!
-    label: String!
-    players: [Player!]!
-  }
 
-  input CreateTeamInput {
-    name: String!
-    label: String!
-  }
-
-  type Player {
-    id: ID!
-    name: String!
-    age: Int!
-  }
-
-  type Guess {
-    id: ID!
-    team_a: Int!
-    team_b: Int!
-  }
-
-  input CreateGuessInput {
-    userId: ID!
-    tournamentId: ID!
-    team_a: Int!
-    team_b: Int!
-  }
-
-  input DeleteGuessInput {
-    userId: ID!
-    guessId: ID!
-  }
-
-  type Mutation {
-    createTeam(data: CreateTeamInput): Team!
-    createGuess(data: CreateGuessInput): Guess!
-    removeGuess(data: DeleteGuessInput): Guess!
-  }
-`
-
-const resolvers = {
-  Query: {
-    team(parent, args, context, info) {
-      const { id } = args
-
-      return teams.find(team => team.id === id)
-    }
-  },
-  Mutation: {
-    createTeam(parent, { data }, context, info) {
-      const newTeam = {
-        id: Math.random()
-          .toString(16)
-          .slice(2),
-        ...data
-      }
-      teams.push(newTeam)
-      return newTeam
-    },
-    createGuess(parent, { data }) {
-      const { userId } = data
-      const user = users.find(user => user.id === userId)
-      const newGuess = {
-        id: Math.random()
-          .toString(16)
-          .slice(2),
-        ...data
-      }
-      user.guesses.push(newGuess)
-      return newGuess
-    },
-    removeGuess(parent, { data }) {
-      const { userId, guessId } = data
-      const userIndex = users.findIndex(user => user.id === userId)
-      const user = users[userIndex]
-      const guessIndex = user.guesses.findIndex(guess => guess.guess_id === guessId)
-      const guess = user.guesses[guessIndex]
-      const deletedGuess = user.guesses.splice(guessIndex, 1)
-
-      console.log(user.guesses, guessIndex)
-
-      return guess
-    }
-  }
-}
+// Resolvers
+import Query from './resolvers/Query'
+import Mutation from './resolvers/Mutation'
 
 const server = new GraphQLServer({
-  typeDefs,
-  resolvers
+  typeDefs: './src/schema.graphql',
+  resolvers: {
+    Query,
+    Mutation
+  },
+  context: {
+    db
+  }
 })
 
 server.start(() => {

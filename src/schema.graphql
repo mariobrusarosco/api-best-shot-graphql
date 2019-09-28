@@ -1,0 +1,55 @@
+type Query {
+  team(id: ID): Team!
+  user(id: ID): User!
+}
+
+type User {
+  id: ID!,
+  name: String!
+  guesses: [Guess!]!
+}
+
+type Team {
+  id: ID!
+  name: String!
+  label: String!
+  players: [Player!]!
+}
+
+input CreateTeamInput {
+  name: String!
+  label: String!
+}
+
+type Player {
+  id: ID!
+  name: String!
+  age: Int!
+}
+
+type Guess {
+  id: ID!
+  gameId: ID!
+  tournamentId: ID!
+  teamA: Int!
+  teamB: Int!
+}
+
+input CreateGuessInput {
+  userId: ID!
+  gameId: ID!
+  tournamentId: ID!
+  teamA: Int!
+  teamB: Int!
+}
+
+input DeleteGuessInput {
+  userId: ID!
+  guessId: ID!
+}
+
+type Mutation {
+  createTeam(data: CreateTeamInput): Team!
+  createGuess(data: CreateGuessInput): Guess!
+  removeGuess(data: DeleteGuessInput): Guess!
+}

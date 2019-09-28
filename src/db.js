@@ -1,27 +1,27 @@
-export const teams = [
+const teams = [
   {
-    id: '1',
-    name: 'Corinthians',
-    label: 'COR'
+    "id": 1,
+    'name': "Corinthians",
+    "label": "COR"
   },
   {
-    id: '2',
-    name: 'Santos',
-    label: 'SAN'
+    "id": 2,
+    'name': "Santos",
+    "label": "SAN"
   },
   {
-    id: '3',
-    name: 'Palmeiras',
-    label: 'PAL'
+    "id": 3,
+    'name': 'Palmeiras',
+    "label": "PAL"
   },
   {
-    id: '4',
-    name: 'São Paulo',
-    label: 'SAO'
+    "id": 4,
+    'name': 'São Paulo',
+    "label": "SAO"
   }
 ]
 
-export const players = [
+const players = [
   {
     id: '6654654',
     team: 1,
@@ -48,28 +48,30 @@ export const players = [
   }
 ]
 
-export const users = [
+const users = [
   {
     id: '2asdHa8324fsd-dsa',
     name: 'Mario',
     guesses: [
       {
-        guess_id: '001',
-        game_id: '001',
+        id: '001',
+        gameId: '001',
         tournamentId: '001',
-        guess: { team_a: 1, team_b: 2 }
+        teamA: 1,
+        teamB: 2
       },
       {
-        guess_id: '002',
+        id: '002',
+        gameId: '002',
         tournamentId: '001',
-        game_id: '002',
-        guess: { team_a: 3, team_b: 0 }
-      }
+        teamA: 3,
+        teamB: 4
+      },
     ]
   }
 ]
 
-export const games = [
+const games = [
   {
     id: '001',
     teams: ['1', '2']
@@ -80,7 +82,7 @@ export const games = [
   }
 ]
 
-export const tournaments = [
+const tournaments = [
   {
     id: '001',
     name: 'Copa do Brasil'
@@ -90,3 +92,13 @@ export const tournaments = [
     name: 'Campeonato Brasileiro'
   }
 ]
+
+const db = {
+  teams,
+  players,
+  users,
+  games,
+  tournaments
+}
+
+export default db
