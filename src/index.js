@@ -1,5 +1,5 @@
 // Vendor
-import { GraphQLServer } from 'graphql-yoga'
+import { GraphQLServer, PubSub } from 'graphql-yoga'
 
 // DB
 // import {MongoClient, ObjectId} from 'mongodb'
@@ -13,15 +13,21 @@ import db from './db'
 // Resolvers
 import Query from './resolvers/Query'
 import Mutation from './resolvers/Mutation'
+import Subscription from './resolvers/Subscription'
+
+// Mutations
+const pubsub = new PubSub()
 
 const server = new GraphQLServer({
   typeDefs: './src/schema.graphql',
   resolvers: {
     Query,
-    Mutation
+    Mutation,
+    Subscription
   },
   context: {
-    db
+    db,
+    pubsub
   }
 })
 

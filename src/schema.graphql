@@ -53,3 +53,7 @@ type Mutation {
   createGuess(data: CreateGuessInput): Guess!
   removeGuess(data: DeleteGuessInput): Guess!
 }
+
+type Subscription {
+  count: Int!
+}
