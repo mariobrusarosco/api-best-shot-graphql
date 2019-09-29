@@ -9,7 +9,7 @@ const Mutation = {
     db.teams.push(newTeam)
     return newTeam
   },
-  createGuess(parent, { data }, { db }) {
+  createGuess(parent, { data }, { db, pubsub }) {
     const { userId } = data
     const user = db.users.find(user => user.id === userId)
     const newGuess = {
@@ -19,6 +19,9 @@ const Mutation = {
       ...data
     }
     user.guesses.push(newGuess)
+
+    pubsub.publish(userId, { user })
+
     return newGuess
   },
   removeGuess(parent, { data }, { db }) {

@@ -56,4 +56,5 @@ type Mutation {
 
 type Subscription {
   count: Int!
+  user(userId: ID!): User!
 }

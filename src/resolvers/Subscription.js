@@ -11,6 +11,14 @@ const Subscription = {
 
       return pubsub.asyncIterator('count')
     }
+  },
+  user: {
+    subscribe(parent, { userId }, { db, pubsub }) {
+      const user = db.users.find(user => user.id === userId)
+      if(!user) throw new Error('no user')
+
+      return pubsub.asyncIterator(userId)
+    }
   }
 }
 
