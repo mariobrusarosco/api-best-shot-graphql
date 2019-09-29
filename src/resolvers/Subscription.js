@@ -12,7 +12,7 @@ const Subscription = {
       return pubsub.asyncIterator('count')
     }
   },
-  user: {
+  guess: {
     subscribe(parent, { userId }, { db, pubsub }) {
       const user = db.users.find(user => user.id === userId)
       if(!user) throw new Error('no user')

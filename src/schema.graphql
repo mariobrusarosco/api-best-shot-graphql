@@ -56,5 +56,5 @@ type Mutation {
 
 type Subscription {
   count: Int!
-  user(userId: ID!): User!
+  guess(userId: ID!): Guess!
 }

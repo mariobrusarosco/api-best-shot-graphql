@@ -20,7 +20,7 @@ const Mutation = {
     }
     user.guesses.push(newGuess)
 
-    pubsub.publish(userId, { user })
+    pubsub.publish(userId, { guess: newGuess })
 
     return newGuess
   },
