@@ -56,5 +56,10 @@ type Mutation {
 
 type Subscription {
   count: Int!
-  guess(userId: ID!): Guess!
+  guess(userId: ID!): GuessSubscription!
+}
+
+type GuessSubscription {
+  mutationType: String!
+  data: Guess!
 }

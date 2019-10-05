@@ -17,7 +17,7 @@ const Subscription = {
       const user = db.users.find(user => user.id === userId)
       if(!user) throw new Error('no user')
 
-      return pubsub.asyncIterator(userId)
+      return pubsub.asyncIterator('guess')
     }
   }
 }

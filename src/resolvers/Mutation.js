@@ -20,7 +20,9 @@ const Mutation = {
     }
     user.guesses.push(newGuess)
 
-    pubsub.publish(userId, { guess: newGuess })
+    pubsub.publish('guess', {
+      guess: { mutationType: 'CREATED', data: newGuess }
+    })
 
     return newGuess
   },
