@@ -26,13 +26,19 @@ const Mutation = {
 
     return newGuess
   },
-  removeGuess(parent, { data }, { db }) {
+  removeGuess(parent, { data }, { db, pubsub }) {
     const { userId, guessId } = data
     const userIndex = db.users.findIndex(user => user.id === userId)
     const user = db.users[userIndex]
     const guessIndex = user.guesses.findIndex(guess => guess.id === guessId)
     const guess = user.guesses[guessIndex]
     const deletedGuess = user.guesses.splice(guessIndex, 1)
+
+    console.log(guess)
+
+    pubsub.publish('guess', {
+      guess: { mutationType: 'DELETED', data: guess }
+    })
 
     return guess
   }
