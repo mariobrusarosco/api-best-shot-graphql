@@ -4,7 +4,7 @@ type Query {
 }
 
 type User {
-  id: ID!,
+  id: ID!
   name: String!
   guesses: [Guess!]!
 }
@@ -54,12 +54,18 @@ type Mutation {
   removeGuess(data: DeleteGuessInput): Guess!
 }
 
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
 type Subscription {
   count: Int!
   guess(userId: ID!): GuessSubscription!
 }
 
 type GuessSubscription {
-  mutationType: String!
+  mutationType: MutationType!
   data: Guess!
 }
