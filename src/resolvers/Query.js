@@ -1,5 +1,5 @@
 const Query = {
-  // Prisma
+  // Prisma approach
   users(parent, args, { prisma }, info) {
     const opArgs = {};
 
@@ -29,13 +29,15 @@ const Query = {
   //       return user.name.toLowerCase().includes(args.query.toLowerCase());
   //     });
   //   },
-  posts(parent, args, { db }, info) {
+  posts(parent, args, { prisma }, info) {
     // Prisma approach
-    // const opArgs = {};
+    const opArgs = {};
 
-    // if (args.query) {
-    //   opArgs = {};
-    // }
+    if (args.query) {
+      opArgs.where = {
+        OR: [{ title_contains: args.query }, { body_contains: args.query }],
+      };
+    }
 
     return prisma.query.posts(opArgs, info);
 
@@ -54,8 +56,8 @@ const Query = {
     //   return isTitleMatch || isBodyMatch;
     // });
   },
-  comments(parent, args, { db }, info) {
-    return db.comments;
+  comments(parent, args, { prisma }, info) {
+    return prisma.query.comments(null, info);
   },
   me() {
     return {

@@ -92,6 +92,22 @@ prisma.mutation.createPost(
 );
 ```
 
+### Passing to Prisma, the Selection of Fields of a Query
+
+The content of a selection of fields of a query is inside the `info`. Pass it to the Prisma Promise.
+
+Inside a `resolver`:
+
+```js
+  users(parent, args, { prisma }, info) {
+    const opArgs = { ... };
+    ...
+    ...
+
+    return prisma.query.users(opArgs, info);
+  },
+```
+
 ### Prisma Utils
 
 #### Exists
@@ -174,6 +190,16 @@ query {
     }
   }
 }
+```
+
+#### Mutations with Prisma
+
+```js
+```
+
+#### Relationship with Prisma
+
+```js
 ```
 
 ### Relationship
