@@ -26,6 +26,7 @@ type Subscription {
 input CreateUserInput {
   name: String!
   email: String!
+  password: String!
 }
 
 input UpdateUserInput {
@@ -61,6 +62,7 @@ type User {
   id: ID!
   name: String!
   email: String!
+  password: String!
   age: Int
   posts: [Post!]!
   comments: [Comment!]!
@@ -90,10 +92,10 @@ enum MutationType {
 
 type PostSubscriptionPayload {
   mutation: MutationType!
-  data: Post!
+  node: Post!
 }
 
 type CommentSubscriptionPayload {
   mutation: MutationType!
-  node: Comment
+  node: Comment!
 }

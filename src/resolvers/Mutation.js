@@ -10,11 +10,9 @@ const Mutation = {
       throw new Error("Email taken");
     }
 
-    const user = await prisma.mutation.createUser({
+    return prisma.mutation.createUser({
       data: args.data,
     }, info);
-
-    return user;
 
     // Root Approach
     // const emailTaken = db.users.some((user) => user.email === args.data.email)

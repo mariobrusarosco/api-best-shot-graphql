@@ -213,3 +213,57 @@ type User {
   comments: [Comment!]!
 }
 ```
+
+### Closing access to Prisma
+
+Inside `prisma.yml`:
+
+```yml
+endpoint: http://localhost:4466
+datamodel: datamodel.graphql
+secret: this_is_prisma_secret
+```
+
+Inside `prisma.js`:
+
+```js
+const prisma = new Prisma({
+  typeDefs: "src/generated/prisma.graphql",
+  endpoint: "http://localhost:4466",
+  secret: "this_is_prisma_secret",
+});
+```
+
+But now, if you run the 'get-schema' command you're gonna need the token as well.
+
+So go to `.graphqlconfig` and add the path for `prisma.yml`
+
+```json
+{
+  "projects": {
+    "prisma-content": {
+      "schemaPath": "src/generated/prisma.graphql",
+      "extensions": {
+        "prisma": "./prisma-content/prisma.yml",
+        "endpoints": {
+          "default": "http://localhost:4466"
+        }
+      }
+    }
+  }
+}
+```
+
+### Keep accessing Prisma locally
+
+You need to pass an authorization header to Playground.
+
+Run `prisma token`. Get the token and use it inside Playground:
+
+```json
+{
+  "Authorization": "Bearer generated_token_here"
+}
+```
+
+### Creating authenticated users

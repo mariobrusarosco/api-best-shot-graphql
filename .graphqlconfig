@@ -3,6 +3,7 @@
     "prisma-content": {
       "schemaPath": "src/generated/prisma.graphql",
       "extensions": {
+        "prisma": "./prisma-content/prisma.yml",
         "endpoints": {
           "default": "http://localhost:4466"
         }
