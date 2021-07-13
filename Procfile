@@ -1,1 +1,1 @@
-web: yarn server-prod
+web: node src/index.js
