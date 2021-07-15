@@ -6,6 +6,9 @@ const resolvers = {
     },
     track: (_, { id },{ dataSources }) => {
       return dataSources.trackAPI.getTrack(id)
+    },
+    tournaments: (_, __, { dataSources }) => {
+      return dataSources.trackAPI.getTournaments()
     }
   },
   Track: {
