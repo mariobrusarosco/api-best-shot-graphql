@@ -1,6 +1,6 @@
 const { RESTDataSource } = require('apollo-datasource-rest');
 
-class TrackAPI extends RESTDataSource {
+class BestShotAPI extends RESTDataSource {
   constructor() {
     super();
     // the Catstronauts catalog is hosted on this server
@@ -9,25 +9,9 @@ class TrackAPI extends RESTDataSource {
     
   }
 
-  getTracksForHome() {
-    return this.get('tracks');
-  }
-
-  getAuthor(authorId) {
-    return this.get(`author/${authorId}`);
-  }
-
-  getTrack(trackId) {
-    return this.get(`track/${trackId}`)
-  }
-
-  getTrackModules(moduleId) {
-    return this.get(`track/${moduleId}/modules`)
-  }
-
   getTournaments() {
     return this.get("/api/v1/tournaments")
   }
 }
 
-module.exports = TrackAPI;
+module.exports = BestShotAPI;

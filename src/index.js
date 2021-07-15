@@ -2,7 +2,7 @@ const { ApolloServer } = require('apollo-server');
 const typeDefs = require('./schema');
 const resolvers = require('./resolvers');
 
-const TrackAPI = require('./datasources/track-api');
+const BestShotAPI = require('./datasources/best-shot-api');
 
 const server = new ApolloServer({
   introspection: true,
@@ -10,7 +10,7 @@ const server = new ApolloServer({
   resolvers,
   dataSources: () => {
     return {
-      trackAPI: new TrackAPI(),
+      BestShotAPI: new BestShotAPI(),
     };
   },
 });
