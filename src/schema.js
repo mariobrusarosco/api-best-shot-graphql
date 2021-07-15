@@ -5,9 +5,14 @@ const typeDefs = gql`
     "Query to get tracks array for the homepage grid"
     tracksForHome: [Track!]!
     track(id: ID!): Track
-    tournaments: [Track!]!
+    tournaments: [Tournament!]
   }
 
+  type Tournament {
+    id: ID!
+    label: String!
+  }
+  
   "A track is a group of Modules that teaches about a specific topic"
   type Track {
     id: ID!
