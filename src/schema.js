@@ -8,7 +8,7 @@ const typeDefs = gql`
   type Tournament {
     id: ID!
     label: String!
-    description: String
+    description: String!
     flag: String!
   }
 `;
