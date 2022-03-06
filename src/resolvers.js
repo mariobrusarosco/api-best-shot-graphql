@@ -1,7 +1,10 @@
 const resolvers = {
   Query: {
-    tournaments: (_, __, { dataSources }) => {
-      return dataSources.BestShotAPI.getTournaments()
+    tournaments: async (_, __, { dataSources }) => {
+      const tournaments = await dataSources.BestShotAPI.getTournaments() 
+      const mappedTournaments = tournaments.map(tournament => ({ id: tournament._id, label: tournament.label, description: tournament.description, flag: tournament.flag }))
+      
+      return mappedTournaments
     }
   },
 };
