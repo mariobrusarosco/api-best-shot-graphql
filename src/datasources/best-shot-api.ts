@@ -4,9 +4,6 @@ class BestShotAPI extends RESTDataSource {
   constructor() {
     super();
 
-    this.memoizeGetRequests = false;
-
-    // this.baseURL = "http://localhost:9090";
     this.baseURL = "https://web-production-bc47.up.railway.app/";
   }
 
