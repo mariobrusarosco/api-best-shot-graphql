@@ -1,11 +1,13 @@
 {
-  "name": "graphql-server",
-  "version": "1.0.0",
-  "description": "",
+  "name": "api-best-shot-graphql",
+  "version": "0.0.1",
+  "description": "API - Best Shot - Graphql",
   "main": "src/index.js",
   "scripts": {
+    "build": "rimraf ./dist && tsc",
     "start": "node src/index",
-    "dev": "nodemon src/index"
+    "dev": "nodemon -r dotenv/config ./src/index.ts",
+    "compile": "tsc --noEmit"
   },
   "dependencies": {
     "apollo-datasource-rest": "^0.11.0",
@@ -13,9 +15,11 @@
     "graphql": "15.4.0"
   },
   "devDependencies": {
+    "@types/express": "^4.17.15",
+    "@types/node": "^18.11.18",
     "dotenv": "^8.2.0",
-    "nodemon": "^2.0.4"
-  },
-  "license": "MIT",
-  "private": true
+    "nodemon": "^2.0.4",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.4"
+  }
 }
