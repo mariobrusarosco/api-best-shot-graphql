@@ -4,7 +4,7 @@ const Query = {
     __: any,
     { dataSources }: { dataSources: any }
   ) => {
-    const tournaments = await dataSources.BestShotAPI.getTournaments();
+    const tournaments = await dataSources.bestShotAPI.getTournaments();
 
     const mappedTournaments = tournaments.map((tournament: any) => ({
       id: tournament._id,
@@ -18,7 +18,7 @@ const Query = {
     args: any,
     { dataSources }: { dataSources: any }
   ) => {
-    const tournaments = await dataSources.BestShotAPI.getTournaments();
+    const tournaments = await dataSources.bestShotAPI.getTournaments();
 
     const tournament = tournaments.find(
       (tournament: any) => tournament?.id === args?.ID
@@ -33,7 +33,7 @@ const Query = {
     );
   },
   leagues: async (_: any, args: any, { dataSources }: { dataSources: any }) => {
-    const leagues = await dataSources.BestShotAPI.getAllLeagues();
+    const leagues = await dataSources.bestShotAPI.getAllLeagues();
 
     const mapppedleagues = leagues.map((league: any) => ({
       id: league._id,
