@@ -1,9 +1,8 @@
-const { RESTDataSource } = require("apollo-datasource-rest");
+import { RESTDataSource } from "@apollo/datasource-rest";
 
 class BestShotAPI extends RESTDataSource {
   constructor() {
     super();
-
     this.baseURL = "https://web-production-bc47.up.railway.app/";
   }
 
@@ -20,4 +19,4 @@ class BestShotAPI extends RESTDataSource {
   }
 }
 
-module.exports = BestShotAPI;
+export default BestShotAPI;
