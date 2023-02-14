@@ -31,8 +31,7 @@ const main = async () => {
     listen: { port: PORT },
   });
 
-  console.log("-----", process.env.$PORT);
-
+  console.log("-----------", process.env.$PORT);
   console.log(`🚀  Server ready at ${url}`);
 };
 
