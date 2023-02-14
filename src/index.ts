@@ -26,7 +26,7 @@ const main = async () => {
         },
       };
     },
-    listen: { port: 4000 },
+    listen: { port: 4000 || process.env.PORT },
   });
 
   console.log(`🚀  Server ready at ${url}`);
