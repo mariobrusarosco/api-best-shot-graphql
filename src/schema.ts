@@ -7,26 +7,47 @@ const typeDefs = gql`
     leagues: [League!]!
   }
 
+  type Mutation {
+    updateMatch(matchId: ID!, match: MatchInput): UpdateMatchResponse!
+  }
+
+  input MatchInput {
+    host: String
+    visitor: String
+    date: String
+    tournamentId: String
+    stadium: String
+  }
+
+  type UpdateMatchResponse {
+    code: Int!
+    success: Boolean!
+    message: String!
+    match: Match
+  }
+
   type Tournament {
-    id: ID!
+    _id: ID!
     label: String!
     description: String!
     flag: String!
   }
 
   type League {
-    id: ID!
+    _id: ID!
     label: String!
-    members: [Member!]!
+    members: [Member]!
   }
 
   type Member {
-    id: ID!
+    _id: ID!
     email: String!
+    firstName: String!
+    lastName: String!
   }
 
   type Match {
-    id: ID!
+    _id: ID!
     host: String!
     visitor: String!
     date: String!

@@ -17,6 +17,10 @@ class BestShotAPI extends RESTDataSource {
   getAllMembers() {
     return this.get("/api/v1/user");
   }
+
+  updateMatch(matchId: string, matchData: any) {
+    return this.patch(`/api/v1/match/${matchId}`, { body: matchData });
+  }
 }
 
 export default BestShotAPI;
