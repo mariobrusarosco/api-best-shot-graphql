@@ -1,10 +1,59 @@
 "use strict";
-var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
-    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
-    return cooked;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var apollo_server_1 = require("apollo-server");
-var typeDefs = (0, apollo_server_1.gql)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  type Query {\n    tournaments: [Tournament!]\n    tournament(id: ID!): Tournament\n    leagues: [League!]!\n  }\n\n  type Tournament {\n    id: ID!\n    label: String!\n    description: String!\n    flag: String!\n  }\n\n  type League {\n    id: ID!\n    label: String!\n    members: [Member!]!\n  }\n\n  type Member {\n    id: ID!\n    email: String!\n  }\n\n  type Match {\n    id: ID!\n    host: String!\n    visitor: String!\n    date: String!\n    tournamentId: String!\n    stadium: String!\n  }\n"], ["\n  type Query {\n    tournaments: [Tournament!]\n    tournament(id: ID!): Tournament\n    leagues: [League!]!\n  }\n\n  type Tournament {\n    id: ID!\n    label: String!\n    description: String!\n    flag: String!\n  }\n\n  type League {\n    id: ID!\n    label: String!\n    members: [Member!]!\n  }\n\n  type Member {\n    id: ID!\n    email: String!\n  }\n\n  type Match {\n    id: ID!\n    host: String!\n    visitor: String!\n    date: String!\n    tournamentId: String!\n    stadium: String!\n  }\n"])));
+const apollo_server_1 = require("apollo-server");
+const typeDefs = (0, apollo_server_1.gql) `
+  type Query {
+    tournaments: [Tournament!]
+    tournament(id: ID!): Tournament
+    leagues: [League!]!
+  }
+
+  type Mutation {
+    updateMatch(matchId: ID!, match: MatchInput): UpdateMatchResponse!
+  }
+
+  input MatchInput {
+    host: String
+    visitor: String
+    date: String
+    tournamentId: String
+    stadium: String
+  }
+
+  type UpdateMatchResponse {
+    code: Int!
+    success: Boolean!
+    message: String!
+    match: Match
+  }
+
+  type Tournament {
+    _id: ID!
+    label: String!
+    description: String!
+    flag: String!
+  }
+
+  type League {
+    _id: ID!
+    label: String!
+    members: [Member]!
+  }
+
+  type Member {
+    _id: ID!
+    email: String!
+    firstName: String!
+    lastName: String!
+  }
+
+  type Match {
+    _id: ID!
+    host: String!
+    visitor: String!
+    date: String!
+    tournamentId: String!
+    stadium: String!
+  }
+`;
 exports.default = typeDefs;
-var templateObject_1;
